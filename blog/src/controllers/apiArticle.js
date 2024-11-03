@@ -5,11 +5,7 @@ class ArticleController {
   async list(req, res) {
     const data = await Article.findPaginate(req.query.page, { limit: 8 })
 
-    res.render("article/list", {
-      title: "Articles",
-      user: req.user,
-      ...data,
-    })
+    res.json(data)
   }
 
   async get(req, res) {
@@ -21,7 +17,7 @@ class ArticleController {
       throw new NotFoundError("Article not found")
     }
 
-    res.render("article/show", {
+    res.json({
       title: article.title,
       article,
       user: req.user,
