@@ -23,7 +23,7 @@ class AuthController {
       { id: user.id, username: user.username },
       process.env.JWT_SECRET,
       {
-        expiresIn: '10000s'
+        // expiresIn: '10000s'
       }
     )
 

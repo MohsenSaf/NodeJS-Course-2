@@ -1,22 +1,22 @@
 export const articleSchema = {
   body: {
-    type: 'object',
+    type: "object",
     properties: {
       title: {
-        type: 'string',
+        type: "string",
         required: true,
         minLength: 5,
-        maxLength: 255
+        maxLength: 255,
       },
       text: {
-        type: 'string',
-        required: true
+        type: "string",
+        required: true,
       },
       image: {
-        type: 'string',
+        type: "string",
         required: true,
-        maxLength: 255
-      }
-    }
-  }
+        maxLength: 255,
+      },
+    },
+  },
 }

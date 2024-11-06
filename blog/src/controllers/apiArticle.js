@@ -1,5 +1,6 @@
 import Article from "../models/article"
 import { NotFoundError } from "../utils/errors"
+import Comment from "../models/comment"
 
 class ArticleController {
   async list(req, res) {
@@ -11,7 +12,7 @@ class ArticleController {
   async get(req, res) {
     const { id } = req.params
 
-    const article = await Article.find(+id)
+    const article = await Article.find(+id, { include: ["user", "comments"] })
 
     if (!article) {
       throw new NotFoundError("Article not found")

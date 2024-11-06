@@ -1,21 +1,22 @@
-import express from 'express'
-import ArticleController from '../../../controllers/admin/article'
-import acl from '../../../middlewares/acl'
-import { validate } from 'express-jsonschema'
-import { articleSchema as schema } from '../../../validators/article'
+import express from "express"
+import ArticleController from "../../../controllers/admin/article"
+import acl from "../../../middlewares/acl"
+import { validate } from "express-jsonschema"
+import { articleSchema as schema } from "../../../validators/article"
 
 const router = express.Router()
 
-router.get('/', acl('WRITER'), ArticleController.list)
-router.get('/:id(\\d+)', acl('WRITER'), ArticleController.get)
-router.post('/', acl('WRITER'), validate(schema), ArticleController.add)
+router.get("/", acl("WRITER"), ArticleController.list)
+router.get("/:id(\\d+)", acl("WRITER"), ArticleController.get)
+router.post("/", acl("WRITER"), validate(schema), ArticleController.add)
 router.put(
-  '/:id(\\d+)',
-  acl('MODERATOR'),
+  "/:id(\\d+)",
+  acl("MODERATOR"),
   validate(schema),
   ArticleController.update
 )
-router.delete('/:id(\\d+)', acl('ADMIN'), ArticleController.remove)
+router.delete("/:id(\\d+)", acl("ADMIN"), ArticleController.remove)
+router.post("/:id(\\d+)/comment", acl("USER"), ArticleController.comment)
 
 export default router
 

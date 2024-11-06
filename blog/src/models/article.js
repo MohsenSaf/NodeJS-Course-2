@@ -1,4 +1,5 @@
-import { sequelize, BaseModel, DataTypes } from '../config/database'
+import { sequelize, BaseModel, DataTypes } from "../config/database"
+import Comment from "./comment"
 
 class Article extends BaseModel {}
 
@@ -6,21 +7,24 @@ Article.init(
   {
     title: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     text: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: false,
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: true
-    }
+      allowNull: true,
+    },
   },
   {
     sequelize,
-    modelName: 'article'
+    modelName: "article",
   }
 )
+
+Article.hasMany(Comment)
+Comment.belongsTo(Article)
 
 export default Article
